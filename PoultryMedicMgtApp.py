@@ -1,7 +1,6 @@
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-#from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtPrintSupport import *
 import datetime
 from datetime import date
@@ -13,10 +12,6 @@ import time
 import os
 
 
-#label.setFont.setStyleSheet("font-weight: bold")
-#myFont=QtGui.QFont()
-#myFont.setBold(True)
-#self.label.setFont(myFont)
 
 
 class WorkerThread(QThread):
@@ -29,15 +24,10 @@ class WorkerThread(QThread):
             row = result.fetchall()
             result2 = self.c.execute("SELECT Name from students")
             row2 = result2.fetchall()
-            #print(row)
-            #serachresult = "Exp_Date : "+str(row[4])
-            #QMessageBox.information(QMessageBox(), 'Successful', serachresult)
             
             
         
-            #except Exception:
-            #   QMessageBox.warning(QMessageBox(), 'Error', 'Could not Find Product from the database.')
-            #print(serachresult)
+
 
 
             today = date.today()
@@ -59,26 +49,14 @@ class WorkerThread(QThread):
                 
                 y = ''.join(i)
                 x = datetime.strptime(y, '%d-%m-%Y')
-                #print (y + "and " + exp_window)
                 if y==exp_window:
-                    #print("False " + y + "is greater than" + exp_window )
-                    #pass;
-                #elif int(y)==int(exp_window):
+
                     hr=ToastNotifier()
                     hr.show_toast('alarm',"Administer This Medication Today: " + namelist[index] , icon_path = "icon/notification-icon-bell-alarm2.ico", duration=5 )
                     #print("True " + y + "is less than" + self.exp_window )print
                     
                     
                 
-                #elif int(y[0:2])>=int(exp_window[0:2]):
-                    #print("False " + y + "is greater than" + exp_window )
-                    #pass;
-                #else:
-                    #print("True " + y + "is less than" + exp_window )
-                    #numeral.append("a")
-                    #index=numeral.count("a")
-                    #self.hr=ToastNotifier()
-                    #self.hr.show_toast('alarm',"Administer This Medication Today: " + namelist[index] , icon_path = "icon/notification-icon-bell-alarm2.ico", duration=5)
             
             self.conn.commit()
             self.c.close()
@@ -86,18 +64,6 @@ class WorkerThread(QThread):
 
         except:
             pass
-            #Print("Issues with Notification")
-            
-        
-        #conn.commit()
-        #c.close()
-        #conn.close()
-
-
-
-
-
-
 
 
 class InsertDialog(QDialog):
